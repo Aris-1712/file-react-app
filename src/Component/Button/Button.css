@@ -7,3 +7,7 @@
     border-radius: 5px;
     margin:0px 2px
 }
+.btn_custom:disabled{
+    cursor: not-allowed;
+    background-color: rgb(106, 106, 136);
+}

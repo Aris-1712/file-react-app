@@ -25,3 +25,12 @@ export const deleteFile=async(path,fileName)=>{
     let result=await Axios.post(`${API.Endpoint}/delFile`,{path,fileName})
     return result.data
 }
+
+export const switchFile=async(path,fileName)=>{
+    let result=await Axios.post(`${API.Endpoint}/switchFile`,{path,fileName})
+    return result.data
+}
+export const switchDir=async(path,dirName)=>{
+    let result=await Axios.post(`${API.Endpoint}/switchDir`,{path,dirName})
+    return result.data
+}

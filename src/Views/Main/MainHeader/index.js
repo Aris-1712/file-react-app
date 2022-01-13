@@ -4,7 +4,7 @@ import "./MainHeader.css";
 import { BiArrowBack, BiHomeAlt } from "react-icons/bi";
 import ModalComp from "../../../Component/ModalComp";
 
-const MainHeader = ({ path, goBack, goHome, addDir, addfile }) => {
+const MainHeader = ({ path, goBack, goHome, addDir, addfile, undo, undoLabel, undoFn }) => {
   const [modal, setModal] = useState(false);
   const [folder, setFolder] = useState("");
   const [file, setFile] = useState("");
@@ -48,7 +48,7 @@ const MainHeader = ({ path, goBack, goHome, addDir, addfile }) => {
         className="mt-3 mb-3"
         type="text"
       ></input>
-      <div className="d-flex flex-row align-items-center">
+      <div className="d-flex flex-row  align-items-center">
         <Button onClick={AddFolderHandler} title={"OK"} />
         <Button onClick={clear} title={"CANCEL"} />
       </div>
@@ -74,7 +74,7 @@ const MainHeader = ({ path, goBack, goHome, addDir, addfile }) => {
   return (
     <>
       <div className="container-fluid">
-        <div className="row mainHeader d-flex flex-row justify-content-between align-items-center">
+        <div className="row mainHeader d-flex flex-column flex-md-row flex-sm-column justify-content-md-between justify-content-sm-center justify-content-center align-items-center">
           <div className="d-flex flex-row align-items-center">
             <BiArrowBack
               onClick={() => {
@@ -90,7 +90,8 @@ const MainHeader = ({ path, goBack, goHome, addDir, addfile }) => {
             />
             <p>Current Path : {path}</p>
           </div>
-          <div className=" d-flex flex-row justify-content-between">
+          <div className=" d-flex flex-row justify-content-between mt-2">
+            {undo==0?null:<Button  onClick={undoFn} title={undoLabel} />}
             <Button
               onClick={() => {
                 setfileModal(true);
