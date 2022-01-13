@@ -1,0 +1,13 @@
+.directoryHolder{
+    display:flex;
+    flex-direction: column;
+    align-items: space-between;
+    background-color: #ededed;
+    padding: 15px;
+    border-radius: 5px;
+    flex:1;
+    margin-top: 20px;
+}
+.cursorPointer{
+    cursor: pointer;
+}
