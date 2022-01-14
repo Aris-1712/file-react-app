@@ -13,13 +13,15 @@ import ModalComp from "../../../Component/ModalComp";
 const Directory = ({ data,changePath,path,delDir,delFile }) => {
   const [modalIsOpen,setModalIsOpen]=useState(false)
   const [dataView,setDataView]=useState("")
+  const [viewHeader,setViewHeader]=useState("")
   const clear=()=>{
     setModalIsOpen(false)
     setDataView("")
+    setViewHeader("")
   }
   const viewModal = (
     <div className="d-flex flex-column">
-      <p>Data</p>
+      <p>{viewHeader}</p>
       <textarea
       disabled
         value={dataView}
@@ -44,6 +46,7 @@ const Directory = ({ data,changePath,path,delDir,delFile }) => {
                   <div onDoubleClick={()=>{
                     setModalIsOpen(true)
                     setDataView(ele.data)
+                    setViewHeader(ele.fileName)
                   }} className="d-flex flex-row align-items-center cursorPointer">
                     <AiFillFileText size={20} />
                     <p className="ml-2">{ele.fileName}</p>
