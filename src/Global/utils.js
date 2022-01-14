@@ -11,8 +11,8 @@ export const createDir=async(path,dirName)=>{
     return result.data
 }
 
-export const createFile=async(path,fileName)=>{
-    let result=await Axios.post(`${API.Endpoint}/addfile`,{path,fileName})
+export const createFile=async(path,fileName,data)=>{
+    let result=await Axios.post(`${API.Endpoint}/addfile`,{path,fileName,data})
     return result.data
 }
 

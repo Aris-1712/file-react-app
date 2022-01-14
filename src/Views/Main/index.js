@@ -57,9 +57,9 @@ const Main = (props) =>{
         }
     }
 
-    const addfile=async(fileName)=>{
+    const addfile=async(fileName,data)=>{
         try {
-            let add=await Calls.createFile(path,fileName)
+            let add=await Calls.createFile(path,fileName,data)
             addLocalStorageFile(fileName)
             getAllData()
         } catch (error) {
@@ -121,7 +121,7 @@ const Main = (props) =>{
     
     return (
         <>
-        <MainHeader undoFn={()=>{undoFn()}} undoLabel={undoState[undo]} undo={undo} addfile={(fileName)=>{addfile(fileName)}} addDir={(dirName)=>{addDir(dirName)}} goHome={()=>{goHome()}} goBack={()=>{goBack()}} path={path}></MainHeader>
+        <MainHeader undoFn={()=>{undoFn()}} undoLabel={undoState[undo]} undo={undo} addfile={(fileName,data)=>{addfile(fileName,data)}} addDir={(dirName)=>{addDir(dirName)}} goHome={()=>{goHome()}} goBack={()=>{goBack()}} path={path}></MainHeader>
         <Directory delFile={(fileName)=>delFile(fileName)} delDir={(dirName)=>delDir(dirName)} path={path} changePath={(path)=>{changePath(path)}} data={data}></Directory>
         </>
     )

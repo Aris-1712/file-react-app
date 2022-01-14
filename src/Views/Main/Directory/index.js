@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Directory.css";
 import {
   AiFillDelete,
@@ -7,9 +7,33 @@ import {
   AiFillFolder,
 } from "react-icons/ai";
 import { DIR_TYPE, FILE_TYPE } from "../../../Global/Types";
+import Button from "../../../Component/Button";
+import ModalComp from "../../../Component/ModalComp";
 
 const Directory = ({ data,changePath,path,delDir,delFile }) => {
+  const [modalIsOpen,setModalIsOpen]=useState(false)
+  const [dataView,setDataView]=useState("")
+  const clear=()=>{
+    setModalIsOpen(false)
+    setDataView("")
+  }
+  const viewModal = (
+    <div className="d-flex flex-column">
+      <p>Data</p>
+      <textarea
+      disabled
+        value={dataView}
+        className="mt-3 mb-3"
+        type="text"
+      ></textarea>
+      <div className="d-flex flex-row  align-items-center">
+        {/* <Button onClick={AddFolderHandler} title={"OK"} /> */}
+        <Button onClick={clear} title={"CLOSE"} />
+      </div>
+    </div>
+  );
   return (
+    <>
     <div className="container-fluid">
       <div className="row">
         <div className="directoryHolder">
@@ -17,7 +41,10 @@ const Directory = ({ data,changePath,path,delDir,delFile }) => {
             if (ele.type === FILE_TYPE) {
               return (
                 <div key={ind} className="d-flex flex-row justify-content-between mt-3">
-                  <div className="d-flex flex-row align-items-center cursorPointer">
+                  <div onDoubleClick={()=>{
+                    setModalIsOpen(true)
+                    setDataView(ele.data)
+                  }} className="d-flex flex-row align-items-center cursorPointer">
                     <AiFillFileText size={20} />
                     <p className="ml-2">{ele.fileName}</p>
                   </div>
@@ -44,6 +71,8 @@ const Directory = ({ data,changePath,path,delDir,delFile }) => {
         </div>
       </div>
     </div>
+    <ModalComp content={viewModal} modalIsOpen={modalIsOpen} />
+    </>
   );
 };
 

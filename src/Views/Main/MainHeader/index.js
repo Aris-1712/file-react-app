@@ -8,23 +8,27 @@ const MainHeader = ({ path, goBack, goHome, addDir, addfile, undo, undoLabel, un
   const [modal, setModal] = useState(false);
   const [folder, setFolder] = useState("");
   const [file, setFile] = useState("");
+  const [data,setData]=useState("")
   const [fileModal, setfileModal] = useState(false);
 
   const AddFolderHandler = () => {
     if (folder) {
+      
+      addDir(folder);
       setFolder();
       setModal(false);
-      addDir(folder);
     } else {
       alert("Please enter a valid folder name");
     }
   };
 
   const AddFileHandler = () => {
+    console.log(data)
     if (file) {
+      addfile(file,data);
       setFile();
+      setData()
       setfileModal(false);
-      addfile(file);
     } else {
       alert("Please enter a valid file name");
     }
@@ -35,6 +39,7 @@ const MainHeader = ({ path, goBack, goHome, addDir, addfile, undo, undoLabel, un
     setModal(false);
     setFile();
     setfileModal(false);
+    setData()
   };
 
   const modalAddFolder = (
@@ -65,7 +70,9 @@ const MainHeader = ({ path, goBack, goHome, addDir, addfile, undo, undoLabel, un
         className="mt-3 mb-3"
         type="text"
       ></input>
-      <div className="d-flex flex-row align-items-center">
+      <p>Enter text</p>
+      <textarea type="text" value={data} onChange={(e)=>{setData(e.target.value)}} />
+      <div className="d-flex flex-row align-items-center mt-3">
         <Button onClick={AddFileHandler} title={"OK"} />
         <Button onClick={clear} title={"CANCEL"} />
       </div>
